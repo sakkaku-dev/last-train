@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://d1gxbyunqm8ki"]
+
+[ext_resource type="Texture2D" uid="uid://cbieh8h7shheu" path="res://assets/Rails.png" id="1_8br1o"]
+[ext_resource type="PackedScene" uid="uid://bs2dxqwmije6e" path="res://train.tscn" id="1_e0gxa"]
+[ext_resource type="Texture2D" uid="uid://c0n76raawqidq" path="res://assets/Hills_Back.png" id="2_oacpv"]
+[ext_resource type="Texture2D" uid="uid://c8gwm5cymd65i" path="res://assets/Hills_Sky.png" id="3_upq8c"]
+[ext_resource type="Texture2D" uid="uid://b4ckih27dhdk1" path="res://assets/Field.png" id="3_vwxrq"]
+[ext_resource type="Script" path="res://Rails.gd" id="4_adi3b"]
+[ext_resource type="Texture2D" uid="uid://6moipoevwjvu" path="res://assets/Hills_Mid.png" id="4_biv33"]
+[ext_resource type="Texture2D" uid="uid://buf0rgck1qi2a" path="res://assets/Hills_Front.png" id="5_rm1tp"]
+[ext_resource type="Texture2D" uid="uid://b86l01bmsiotb" path="res://assets/Hills_Field.png" id="8_3e7y3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5bngx"]
+texture = ExtResource("1_8br1o")
+texture_region_size = Vector2i(35, 6)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wesiv"]
+tile_size = Vector2i(35, 6)
+sources/0 = SubResource("TileSetAtlasSource_5bngx")
+
+[node name="Game" type="Node2D"]
+
+[node name="Train" parent="." instance=ExtResource("1_e0gxa")]
+
+[node name="Field" type="Sprite2D" parent="."]
+position = Vector2(20, 142)
+texture = ExtResource("3_vwxrq")
+
+[node name="Rails" type="TileMap" parent="Field"]
+position = Vector2(-20, -86)
+tile_set = SubResource("TileSet_wesiv")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65525, 0, 0, -65526, 0, 0, -65527, 0, 0, -65528, 0, 0, -65529, 0, 0, -65530, 0, 0, -65531, 0, 0, -65532, 0, 0, -65533, 0, 0, -65534, 0, 0, -65535, 0, 0, -65536, 0, 0, -1, 0, 0, -2, 0, 0, -3, 0, 0, -4, 0, 0, -5, 0, 0, -6, 0, 0, -7, 0, 0, -8, 0, 0, -9, 0, 0, -10, 0, 0, -11, 0, 0, -65523, 0, 0, -65524, 0, 0, -12, 0, 0, -13, 0, 0, -14, 0, 0, -15, 0, 0, -16, 0, 0, -17, 0, 0, -18, 0, 0)
+script = ExtResource("4_adi3b")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Field/Rails"]
+position = Vector2(393, -22)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 1)
+motion_mirroring = Vector2(1226, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2(0, -63)
+texture = ExtResource("3_upq8c")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(1226, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_oacpv")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(1226, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("4_biv33")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(1226, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("5_rm1tp")
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_mirroring = Vector2(1226, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer3"]
+texture = ExtResource("8_3e7y3")
+
+[connection signal="screen_entered" from="Field/Rails/VisibleOnScreenNotifier2D" to="Field/Rails" method="_on_visible_on_screen_notifier_2d_screen_entered"]
