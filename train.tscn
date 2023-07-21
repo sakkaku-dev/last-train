@@ -281,7 +281,6 @@ script = ExtResource("1_72uql")
 position = Vector2(0, -26)
 
 [node name="Train" type="Sprite2D" parent="."]
-position = Vector2(15, 33)
 texture = ExtResource("1_adsrg")
 
 [node name="Start" type="AudioStreamPlayer" parent="."]

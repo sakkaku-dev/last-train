@@ -22,7 +22,7 @@ sources/0 = SubResource("TileSetAtlasSource_5bngx")
 [node name="Game" type="Node2D"]
 
 [node name="Train" parent="." instance=ExtResource("1_e0gxa")]
-position = Vector2(0, -18)
+position = Vector2(0, 16)
 
 [node name="Rails" type="TileMap" parent="."]
 position = Vector2(0, 38)
